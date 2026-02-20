@@ -2,896 +2,191 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#faf8f5">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; media-src 'self' https://*.googleapis.com; connect-src 'none'; script-src 'none';">
   <title>Psychodynamic Social Work Practice</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-bg: #faf8f5;
-      --color-surface: #ffffff;
-      --color-text: #2c2420;
-      --color-text-secondary: #6b5e56;
-      --color-accent: #8b4513;
-      --color-accent-light: #a0622d;
-      --color-border: #e8e0d8;
-      --color-tag-required: #5c3d2e;
-      --color-tag-supplemental: #7a6a5e;
-      --color-tag-media: #4a6741;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.7;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Header */
-    header {
-      padding: 80px 0 60px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
-    }
-
-    header .subtitle {
-      font-size: 1.05rem;
-      color: var(--color-text-secondary);
-      margin-bottom: 4px;
-    }
-
-    header .byline {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-    }
-
-    header .byline a {
-      color: var(--color-accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    header .byline a:hover {
-      border-bottom-color: var(--color-accent);
-    }
-
-    /* Divider */
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--color-border);
-      margin: 0 auto 48px;
-    }
-
-    /* Sections */
-    section {
-      margin-bottom: 56px;
-    }
-
-    section > h2 {
-      font-family: var(--font-serif);
-      font-size: 1.75rem;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-
-    section p {
-      margin-bottom: 16px;
-      color: var(--color-text);
-    }
-
-    /* Book list */
-    .book-list {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .book-list li {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--color-border);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .book-list li:last-child {
-      border-bottom: none;
-    }
-
-    .book-list .label {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 2px 8px;
-      border-radius: 3px;
-      margin-right: 8px;
-      vertical-align: middle;
-      position: relative;
-      top: -1px;
-    }
-
-    .label-required {
-      background: var(--color-tag-required);
-      color: #fff;
-    }
-
-    .label-recommended {
-      background: var(--color-tag-supplemental);
-      color: #fff;
-    }
-
-    /* Week cards */
-    .week {
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      margin-bottom: 12px;
-      background: var(--color-surface);
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-
-    .week:hover {
-      box-shadow: 0 2px 12px rgba(44, 36, 32, 0.06);
-    }
-
-    .week summary {
-      padding: 20px 24px;
-      cursor: pointer;
-      list-style: none;
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-    }
-
-    .week summary::-webkit-details-marker { display: none; }
-
-    .week summary::before {
-      content: '+';
-      font-family: var(--font-sans);
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--color-text-secondary);
-      flex-shrink: 0;
-      width: 20px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .week[open] summary::before {
-      content: '\2212';
-    }
-
-    .week-number {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-text-secondary);
-      flex-shrink: 0;
-      min-width: 52px;
-    }
-
-    .week-title {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      line-height: 1.35;
-    }
-
-    .week-body {
-      padding: 0 24px 24px 60px;
-    }
-
-    .week-description {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      font-style: italic;
-      margin-bottom: 24px;
-      line-height: 1.65;
-    }
-
-    .reading-section {
-      margin-bottom: 20px;
-    }
-
-    .reading-section h4 {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .reading-section h4 .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .dot-required { background: var(--color-tag-required); }
-    .dot-supplemental { background: var(--color-tag-supplemental); }
-    .dot-media { background: var(--color-tag-media); }
-
-    .reading-section ul {
-      list-style: none;
-    }
-
-    .reading-section li {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      padding: 6px 0;
-      color: var(--color-text);
-    }
-
-    .reading-section li .pages {
-      color: var(--color-text-secondary);
-      font-size: 0.8rem;
-    }
-
-    .reading-section li .request-link {
-      display: inline-block;
-      font-size: 0.75rem;
-      color: var(--color-accent);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--color-accent);
-      margin-left: 4px;
-      transition: border-color 0.2s;
-    }
-
-    .reading-section li .request-link:hover {
-      border-bottom-style: solid;
-    }
-
-    .reading-section li .media-link {
-      display: inline-block;
-      font-size: 0.75rem;
-      color: var(--color-tag-media);
-      text-decoration: none;
-      border-bottom: 1px dotted var(--color-tag-media);
-      margin-left: 4px;
-      transition: border-color 0.2s;
-    }
-
-    .reading-section li .media-link:hover {
-      border-bottom-style: solid;
-    }
-
-    /* CTA Section */
-    .cta {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      padding: 40px;
-      text-align: center;
-      margin: 56px 0;
-    }
-
-    .cta h2 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-
-    .cta p {
-      font-size: 0.95rem;
-      color: var(--color-text-secondary);
-      margin-bottom: 24px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta a.button {
-      display: inline-block;
-      background: var(--color-accent);
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 32px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-
-    .cta a.button:hover {
-      background: var(--color-accent-light);
-    }
-
-    /* Note section */
-    .note {
-      background: var(--color-surface);
-      border-left: 3px solid var(--color-border);
-      padding: 20px 24px;
-      border-radius: 0 6px 6px 0;
-      margin: 40px 0;
-    }
-
-    .note h3 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-bottom: 8px;
-    }
-
-    .note p {
-      font-size: 0.9rem;
-      color: var(--color-text-secondary);
-      line-height: 1.65;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 0 60px;
-      font-size: 0.85rem;
-      color: var(--color-text-secondary);
-      border-top: 1px solid var(--color-border);
-    }
-
-    footer p {
-      margin-bottom: 4px;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header { padding: 48px 0 40px; }
-      header h1 { font-size: 2.2rem; }
-      .week summary { padding: 16px 18px; }
-      .week-body { padding: 0 18px 18px 42px; }
-      .cta { padding: 28px 20px; }
-    }
-  </style>
+  <link rel="preload" href="fonts/Newsreader-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <div class="container">
 
-    <header>
-      <h1>Psychodynamic Social<br>Work Practice</h1>
-      <p class="subtitle">A 14-Week Syllabus for Clinical Social Workers</p>
-      <p class="byline">Curated by <a href="mailto:topher416@gmail.com">Topher Rasmussen, MSW</a></p>
-    </header>
+    <main id="main" class="stagger-in">
 
-    <div class="divider"></div>
+      <header>
+        <h1>Psychodynamic Social<br>Work Practice</h1>
+        <p class="subtitle">A 14-Week Open Course for Clinical Social Workers</p>
+        <p class="byline">Curated by <a href="mailto:topher416@gmail.com">Topher Rasmussen, MSW</a></p>
+      </header>
 
-    <section>
-      <p>I designed this course during my MSW at the University of Utah College of Social Work as an independent study with Dr. Joanna Bettmann Schaefer in Spring 2024. I wanted something that didn't exist in our program&mdash;a deep, sustained immersion in psychodynamic theory as it actually applies to clinical social work practice.</p>
+      <div class="divider"></div>
 
-      <p>The course traces the evolution of psychodynamic thought from Freud through contemporary relational and intersubjective theories, always with an eye toward what this means for the clinician sitting across from a client. Special attention is given to the intersection of race, class, gender, culture, and biology with inner psychological life&mdash;the biopsychosocial person-in-environment perspective that defines our profession.</p>
+      <!-- The Manifesto -->
+      <section>
+        <p>Most MSW programs treat psychodynamic theory as a historical footnote. A week on Freud, maybe two. A passing reference to object relations before moving on to CBT worksheets and manualized protocols. If you&rsquo;re lucky, someone mentions transference. If you&rsquo;re very lucky, they explain it.</p>
 
-      <p>This syllabus is designed for pre-licensed social workers who want to deepen their psychodynamic understanding in the early years of practice.</p>
-    </section>
+        <p>This is a problem. Not because every social worker needs to become a psychoanalyst, but because psychodynamic thinking is the deepest framework we have for understanding what actually happens between two people in a room. It&rsquo;s the tradition that takes the unconscious seriously. That treats the therapeutic relationship not as a delivery mechanism for interventions, but as the intervention itself. That asks you to sit with ambiguity, tolerate not-knowing, and trust that something meaningful is happening even when you can&rsquo;t name it yet.</p>
 
-    <section>
-      <h2>Texts</h2>
-      <ul class="book-list">
-        <li>
-          <span class="label label-required">Required</span>
-          Berzoff, J., Flanagan, L. M. &amp; Hertz, P. (Eds.). (2021). <em>Inside Out and Outside In: Psychodynamic Clinical Theory and Psychopathology in Contemporary Multicultural Contexts</em> (5th ed.). Rowman &amp; Littlefield.
-        </li>
-        <li>
-          <span class="label label-recommended">Recommended</span>
-          McWilliams, N. (2004). <em>Psychoanalytic Psychotherapy: A Practitioner's Guide.</em> Guilford Press.
-        </li>
-        <li>
-          <span class="label label-recommended">Recommended</span>
-          Quatman, T. (2015). <em>Essential Psychodynamic Psychotherapy: An Acquired Art.</em> Routledge.
-        </li>
-      </ul>
-    </section>
+        <p>I built this course because I wanted that training and couldn&rsquo;t find it. During my MSW at the University of Utah, I designed a 14-week independent study with Dr. Joanna Bettmann Schaefer &mdash; a deep, sustained immersion in psychodynamic thought from Freud through contemporary relational and intersubjective theories. Not a survey. A transformation.</p>
 
-    <section>
-      <h2>Weekly Syllabus</h2>
+        <p>Now I&rsquo;m making it available to anyone who wants it. The entire course &mdash; the syllabus, the curator framing, the audio overviews, the reflection prompts &mdash; is open and free. You can work through it at your own pace, on your own terms, without paying anything or talking to anyone. If you want the full readings and a live cohort experience, that option exists too. But the core of what I built is here, right now, for you.</p>
 
-      <!-- Week 1 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 1</span>
-          <span class="week-title">What Is Psychodynamic Psychotherapy, and Is It Evidence-Based?</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Before we get into the theories themselves, we need to answer the question that every social worker gets asked: does this stuff actually work? Shedler's 2010 paper is the single best argument for psychodynamic therapy's empirical standing, and the Berzoff chapter grounds us in why a biopsychosocial lens matters in the first place.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 1: Why a Biopsychosocial Context? <em>Inside Out and Outside In.</em> <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%201&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20the%20reading%20%22Ch.%201%3A%20Why%20a%20Biopsychosocial%20Context%22%20from%20Inside%20Out%20and%20Outside%20In.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Shedler, J. (2010). The efficacy of psychodynamic psychotherapy. <em>American Psychologist, 65,</em> 98&ndash;109. <span class="pages">(11 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Shedler%202010&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Shedler%20(2010)%20%22The%20Efficacy%20of%20Psychodynamic%20Psychotherapy.%22%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Fonagy, P. (2015). The effectiveness of psychodynamic psychotherapies: An update. <em>World Psychiatry, 14</em>(2), 137&ndash;150. <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Fonagy%202015&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Fonagy%20(2015)%20%22The%20Effectiveness%20of%20Psychodynamic%20Psychotherapies.%22%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Leichsenring, F., et al. (2023). The status of psychodynamic psychotherapy as an empirically supported treatment for common mental disorders. <em>World Psychiatry, 22</em>(2), 286&ndash;304. <span class="pages">(18 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Leichsenring%202023&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Leichsenring%20et%20al.%20(2023)%20on%20psychodynamic%20psychotherapy%20as%20empirically%20supported%20treatment.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Midgley, N., et al. (2021). The evidence-base for psychodynamic psychotherapy with children and adolescents: A narrative synthesis. <em>Frontiers in Psychology, 12,</em> 662671. <span class="pages">(18 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Midgley%202021&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Midgley%20et%20al.%20(2021)%20on%20psychodynamic%20psychotherapy%20with%20children%20and%20adolescents.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Shedler, J. (2006). That was then, this is now: Psychoanalytic psychotherapy for the rest of us. <span class="pages">(60 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Shedler%202006&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Shedler%20(2006)%20%22That%20Was%20Then%2C%20This%20Is%20Now.%22%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Psychoanalytic Therapy with Nancy McWilliams, PhD.</em> APA. <span class="pages">(100 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20McWilliams%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Psychoanalytic%20Therapy%20with%20Nancy%20McWilliams.%22%0A%0AThanks!" class="request-link">request</a></li>
-              <li><em>The 7 Principles of Psychoanalytic Psychotherapy.</em> Jonathan Shedler. YouTube. <span class="pages">(11 min)</span> <a href="https://www.youtube.com/watch?v=YNWy1ksxIDo" target="_blank" class="media-link">watch</a></li>
-              <li>The Social Work Podcast: <em>Interview with Dr. Carol Tosone.</em> <span class="pages">(37 min)</span> <a href="https://socialworkpodcast.blogspot.com/2009/12/psychoanalytic-treatment-in.html" target="_blank" class="media-link">listen</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p>This is for pre-licensed social workers who suspect their programs left something out. For clinicians who want to understand why their client keeps recreating the same relational pattern in the therapy room. For anyone who&rsquo;s felt the limits of &ldquo;What are your coping skills?&rdquo; and wants a deeper way to think about what&rsquo;s happening.</p>
+      </section>
 
-      <!-- Week 2 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 2</span>
-          <span class="week-title">Origins of Psychotherapy &mdash; Freud</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Love him or not, you have to understand Freud to understand everything that came after. This week covers drive theory, the unconscious, and the basic architecture of psychoanalytic thought. Freud's 1914 paper on remembering, repeating, and working through remains one of the most clinically useful things he ever wrote.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 2: Drive and Beyond: Freud's Psychoanalytic Concepts. <em>Inside Out and Outside In.</em> <span class="pages">(32 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%202&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%202%20from%20Inside%20Out%20and%20Outside%20In.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>McWilliams, N. &mdash; Ch. 1: What Defines a Psychoanalytic Therapy? <em>Psychoanalytic Psychotherapy.</em> <span class="pages">(17 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20McWilliams%20Ch.%201&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20McWilliams%20Ch.%201.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Freud, S. (1914). Remembering, repeating, and working through. SE 12. <span class="pages">(6 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Freud%201914&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Freud%20(1914)%20Remembering%2C%20Repeating%2C%20and%20Working%20Through.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Coltart, N. (1993). Ch. 2: Psychoanalysis vs. psychotherapy? In <em>How To Survive as a Psychotherapist.</em> <span class="pages">(12 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Coltart%201993&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Coltart%20(1993)%20Ch.%202%20from%20How%20To%20Survive%20as%20a%20Psychotherapist.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Scull, A. (2019). Ch. 6: Burying Freud. In <em>Psychiatry and its Discontents.</em> <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Scull%202019&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Scull%20(2019)%20Ch.%206%20Burying%20Freud.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>The Therapy Relationship</em> with Charles Gelso, PhD. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Gelso%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22The%20Therapy%20Relationship%22%20with%20Charles%20Gelso.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ordinary Unhappiness Podcast, Ep. 2: Transference. <span class="pages">(1 hr 36 min)</span> <a href="https://ordinaryunhappiness.buzzsprout.com/2131830/12610475-02-transference" target="_blank" class="media-link">listen</a></li>
-              <li>Open Yale Courses: <em>Foundations: Freud</em> with Paul Bloom. <span class="pages">(52 min)</span> <a href="https://oyc.yale.edu/psychology/psyc-110/lecture-3" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+      <!-- What You'll Leave With -->
+      <section>
+        <h2>What You&rsquo;ll Leave With</h2>
 
-      <!-- Week 3 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 3</span>
-          <span class="week-title">Clinical Application &mdash; Transference and Countertransference</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">This is where theory meets the room. Transference and countertransference are the engine of psychodynamic work, and this week brings together four essential perspectives&mdash;Joseph on the total situation, Loewald on the mutuality of the process, Ogden on the first meeting, and Winnicott's deceptively brief paper that reframes the whole concept.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Joseph, B. (1985). Transference: The total situation. <em>Int. J. Psychoanal., 66,</em> 447&ndash;454. <span class="pages">(8 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Joseph%201985&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Joseph%20(1985)%20Transference%3A%20The%20Total%20Situation.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Loewald, H. (1986). Transference&ndash;countertransference. <em>J. Amer. Psychoanal. Assn., 34,</em> 275&ndash;287. <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Loewald%201986&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Loewald%20(1986)%20Transference%E2%80%93Countertransference.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. (1992). Comments on transference and countertransference in the initial analytic meeting. <em>Psychoanal. Inquiry, 12,</em> 225&ndash;247. <span class="pages">(23 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%201992&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(1992)%20on%20transference%20in%20the%20initial%20meeting.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Winnicott, D. W. (1956). On transference. <em>Int. J. Psychoanal., 37,</em> 386&ndash;388. <span class="pages">(3 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Winnicott%201956&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Winnicott%20(1956)%20On%20Transference.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Parth, K., et al. (2017). Transference and countertransference: A review. <em>Bull. Menninger Clinic, 81</em>(2), 167&ndash;211. <span class="pages">(46 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Parth%202017&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Parth%20et%20al.%20(2017)%20Transference%20and%20Countertransference%20review.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Pinsky, E. (2014). The potion: Reflections on Freud's "Observations of transference love." <em>J. Amer. Psychoanal. Assn., 62,</em> 455&ndash;474. <span class="pages">(20 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Pinsky%202014&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Pinsky%20(2014)%20on%20Freud's%20Observations%20of%20Transference%20Love.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Hoffman, I. Z. (1983). The patient as interpreter of the analyst's experience. <em>Contemp. Psychoanal., 19,</em> 389&ndash;422. <span class="pages">(18 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Hoffman%201983&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Hoffman%20(1983)%20The%20Patient%20as%20Interpreter.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Countertransference</em> with Jeffrey A. Hayes. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Hayes%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Countertransference%22%20with%20Jeffrey%20A.%20Hayes.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Psychiatry &amp; Psychotherapy Podcast, Ep. 171: <em>Nancy McWilliams on Mental Health, Transference, and Dissociation.</em> <span class="pages">(1 hr 25 min)</span> <a href="https://www.psychiatrypodcast.com/psychiatry-psychotherapy-podcast/episode-171-nancy-mcwilliams-on-mental-health-transference-and-dissociation" target="_blank" class="media-link">listen</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p>Not a certificate. Not a credential. Something more useful: a way of thinking you didn&rsquo;t have before.</p>
 
-      <!-- Week 4 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 4</span>
-          <span class="week-title">Ego Psychology</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Ego psychology bridges Freud's structural model with the question social workers actually care about: how do people adapt? Anna Freud and the ego psychologists shifted attention from the id to the ego's capacity for defense, adaptation, and resilience&mdash;concepts that map directly onto strengths-based practice.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 4: Ego Psychology. <em>Inside Out and Outside In.</em> <span class="pages">(28 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%204&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%204%20Ego%20Psychology%20from%20Inside%20Out%20and%20Outside%20In.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Freud, A. (1952). The mutual influences in the development of ego and id. <em>Psychoanal. Study of the Child, 7,</em> 42&ndash;50. <span class="pages">(9 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20A.%20Freud%201952&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Anna%20Freud%20(1952)%20on%20ego%20and%20id.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Danzer, G. (2012). Integrating ego psychology and strengths-based social work. <em>J. Theory Construction &amp; Testing, 16,</em> 9. <span class="pages">(8 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Danzer%202012&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Danzer%20(2012)%20on%20ego%20psychology%20and%20strengths-based%20social%20work.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Freud, S. (1936). Inhibitions, symptoms and anxiety. <em>Psychoanal. Quarterly, 4,</em> 616&ndash;625. <span class="pages">(11 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Freud%201936&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Freud%20(1936)%20Inhibitions%2C%20Symptoms%20and%20Anxiety.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Kris, E. (1951). Ego psychology and interpretation in psychoanalytic therapy. <em>Psychoanal. Quarterly, 20,</em> 15&ndash;30. <span class="pages">(15 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Kris%201951&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Kris%20(1951)%20Ego%20Psychology%20and%20Interpretation.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Psychodynamic Therapy Skills</em> with Hanna Levenson. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Levenson%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Psychodynamic%20Therapy%20Skills%22%20with%20Hanna%20Levenson.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>The Social Work Podcast, Ep. 72: <em>Psychodynamic Therapy with Vulnerable and Oppressed Populations</em> with Joan Berzoff. <span class="pages">(30 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Social%20Work%20Podcast%20Ep.%2072&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20Social%20Work%20Podcast%20Ep.%2072%20with%20Joan%20Berzoff.%0A%0AThanks!" class="request-link">request</a></li>
-              <li><em>Ego Psychology.</em> YouTube. <span class="pages">(1 min)</span> <a href="https://www.youtube.com/watch?v=WuKMPbFU1dM" target="_blank" class="media-link">watch</a></li>
-              <li><em>Defense Mechanisms | How We Manage Anxiety (and Get Stuck).</em> YouTube. <span class="pages">(17 min)</span> <a href="https://www.youtube.com/watch?v=tiQRJh0HL4E" target="_blank" class="media-link">watch</a></li>
-              <li><em>Defense Mechanisms in Therapy.</em> YouTube. <span class="pages">(11 min)</span> <a href="https://www.youtube.com/watch?v=j7IH3OYjMWs" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p>After fourteen weeks with this material, you&rsquo;ll carry a psychodynamic lens &mdash; an orientation toward clinical work that notices transference, holds countertransference, and understands defense not as pathology but as adaptation. You&rsquo;ll have a clinical vocabulary drawn from Freud, Klein, Winnicott, Kohut, Ogden, Bromberg, and the relational tradition. You&rsquo;ll think differently about what happens in the space between you and your clients.</p>
 
-      <!-- Week 5 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 5</span>
-          <span class="week-title">Race and Racism in Psychodynamic Theory</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Psychodynamic theory has a complicated relationship with race. This week confronts that head-on&mdash;examining how racism operates in the consulting room, in countertransference, and within the psychoanalytic tradition itself. If psychodynamic social work is going to remain relevant, it has to reckon with who it was built by and who it has historically excluded.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Shah, N. (2022). Ch. 2: Racism. In <em>The Analyst's Torment: Unbearable Mental States in Countertransference.</em> <span class="pages">(23 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Shah%202022&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Shah%20(2022)%20Ch.%202%20Racism.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Akhtar, S. Xenophobia. In <em>The Book of Emotions.</em> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Akhtar%20Xenophobia&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Akhtar%2C%20Xenophobia%20from%20The%20Book%20of%20Emotions.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 11: Psychodynamic Contributions to Understanding Racism. <em>Inside Out and Outside In.</em> <span class="pages">(15 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%2011&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%2011%20on%20Racism%20from%20Inside%20Out%20and%20Outside%20In.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Manning, M. C., et al. (2004). Empowering African Americans through social work practice. <em>Families in Society, 85</em>(2), 229&ndash;235. <span class="pages">(6 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Manning%202004&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Manning%20et%20al.%20(2004)%20Empowering%20African%20Americans%20through%20Social%20Work.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>APsaA. Ch. 6: The Experience of Race on the Couch. <em>Holmes Commission Final Report.</em> (excerpt) <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Holmes%20Commission%20Ch.%206&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20the%20Holmes%20Commission%20Final%20Report%2C%20Ch.%206.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li><em>Black Psychoanalysts Speak.</em> American Psychoanalytic Association. <span class="pages">(59 min)</span> <a href="https://www.youtube.com/watch?v=N8-VIi7tb44" target="_blank" class="media-link">watch</a></li>
-              <li>Video: <em>Culturally Informed Psychodynamic Psychotherapy Online</em> with Pratyusha Tummala-Narra. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Tummala-Narra%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Culturally%20Informed%20Psychodynamic%20Psychotherapy%22%20with%20Tummala-Narra.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p>The course traces the evolution of psychodynamic thought across a century, always with an eye toward what this means for the clinician sitting across from another person. Special attention is given to the intersection of race, class, gender, culture, and biology with inner psychological life &mdash; the biopsychosocial person-in-environment perspective that defines our profession.</p>
+      </section>
 
-      <!-- Week 6 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 6</span>
-          <span class="week-title">Object Relations &mdash; Melanie Klein</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Klein is dense, strange, and brilliant. Her ideas about the paranoid-schizoid and depressive positions, about envy and gratitude, about the way we split the world into good and bad before we can hold it as whole&mdash;these are some of the most clinically generative concepts in all of psychodynamic theory. Give her time.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 5: Object Relations Theory. <em>Inside Out and Outside In.</em> <span class="pages">(32 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%205&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%205%20Object%20Relations%20Theory.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Klein, M. (1940). Mourning and its relation to manic-depressive states. <em>Int. J. Psycho-Anal., 21,</em> 125&ndash;153. <span class="pages">(29 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Klein%201940&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Klein%20(1940)%20Mourning%20and%20Manic-Depressive%20States.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Klein, M. (1946). Notes on some schizoid mechanisms. <em>Int. J. Psychoanal., 27,</em> 99&ndash;110. <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Klein%201946&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Klein%20(1946)%20Notes%20on%20Some%20Schizoid%20Mechanisms.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Steiner, J. (1987). The interplay between pathological organizations and the paranoid-schizoid and depressive positions. <em>Int. J. Psycho-Anal., 68,</em> 69&ndash;80. <span class="pages">(12 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Steiner%201987&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Steiner%20(1987)%20on%20pathological%20organizations.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. H. (1992). The contributions of Klein and Winnicott. <em>Int. J. Psychoanal., 73,</em> 613&ndash;626. <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%201992%20Klein%20Winnicott&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(1992)%20on%20Klein%20and%20Winnicott.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Object Relations Therapy</em> by Jill Savege Scharff. psychotherapy.net. <span class="pages">(1 hr 54 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Scharff%20Object%20Relations%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20%22Object%20Relations%20Therapy%22%20by%20Jill%20Savege%20Scharff.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Attachment Theory in Action Podcast: <em>Object Relations &amp; Attachment Theory &mdash; Part 1.</em> <span class="pages">(32 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Attachment%20Theory%20Podcast%20Part%201&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Attachment%20Theory%20in%20Action%20podcast%2C%20Part%201.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>The Object Relations View Podcast: <em>Melanie Klein and Instinctual Envy.</em> <span class="pages">(10 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Object%20Relations%20View%20Klein&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Object%20Relations%20View%20podcast%20on%20Klein%20and%20Envy.%0A%0AThanks!" class="request-link">request</a></li>
-              <li><em>Parapraxis Seminar IV: Fakhry Davids on Klein's Infant.</em> YouTube. <a href="https://www.youtube.com/watch?v=eO4MZu7SmUc" target="_blank" class="media-link">watch</a></li>
-              <li><em>The Political Spectrum in Terms of Mental Health: The Paranoid-Schizoid Right vs The Depressive Left.</em> YouTube. <a href="https://www.youtube.com/watch?v=5FVtuXZeWAI" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+      <!-- How It Works -->
+      <section>
+        <h2>How It Works</h2>
 
-      <!-- Week 7 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 7</span>
-          <span class="week-title">Clinical Application &mdash; Projection, Splitting, and Projective Identification</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">If Klein gave us the theory, this week is about what it looks like in practice. Ogden's paper on projective identification is one of the clearest explanations of a concept that clinicians constantly use but rarely define well. McWilliams grounds it in the language of defense mechanisms that you'll actually recognize from your caseload.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>McWilliams, N. (2011). Selections from Ch. 5: Primary defensive processes. <em>Psychoanalytic Diagnosis.</em> <span class="pages">(8 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20McWilliams%20Ch.%205&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20McWilliams%20(2011)%20Ch.%205%20on%20defense%20mechanisms.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. (1979). On projective identification. <em>Int. J. Psychoanal., 60,</em> 357&ndash;383. <span class="pages">(14 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%201979&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(1979)%20On%20Projective%20Identification.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Blass, R. B. (2015). Conceptualizing splitting. <em>Int. J. Psychoanal., 96,</em> 123&ndash;139. <span class="pages">(17 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Blass%202015&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Blass%20(2015)%20Conceptualizing%20Splitting.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Kernberg, O. F. (1987). Projection and projective identification. <em>J. Amer. Psychoanal. Assn., 35,</em> 795&ndash;819. <span class="pages">(25 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Kernberg%201987&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Kernberg%20(1987)%20Projection%20and%20Projective%20Identification.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Psychodynamic Therapy Skills &mdash; Interview and Session</em> with Hanna Levenson. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Levenson%20Interview%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Psychodynamic%20Therapy%20Skills%20%E2%80%94%20Interview%20and%20Session%22%20with%20Hanna%20Levenson.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Lives of the Unconscious Podcast, Ep. 16: <em>Denial, Splitting, Projection.</em> <span class="pages">(20 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Lives%20of%20Unconscious%20Ep.%2016&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Lives%20of%20the%20Unconscious%20podcast%2C%20Ep.%2016.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p><strong>Self-paced.</strong> The course was designed for fourteen weeks, but it&rsquo;s yours to move through however you want. Some people will take a week per module. Others will read one paper a day and finish in a month. There&rsquo;s no deadline, no one checking your progress.</p>
 
-      <!-- Week 8 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 8</span>
-          <span class="week-title">Object Relations &mdash; Donald Woods Winnicott</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Winnicott is the theorist who makes social workers feel seen. The good-enough mother, the holding environment, the capacity to be alone in the presence of another&mdash;his ideas are deeply humane and immediately applicable to clinical work. Ogden's essay on reading Winnicott is itself a masterclass in how to think psychodynamically.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Winnicott, D. W. (1949). Hate in the countertransference. <em>Int. J. Psychoanal., 30,</em> 69&ndash;74. <span class="pages">(5 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Winnicott%201949&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Winnicott%20(1949)%20Hate%20in%20the%20Countertransference.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. H. (2001). Reading Winnicott. <em>Psychoanal. Quarterly, 70</em>(2), 299&ndash;323. <span class="pages">(25 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%202001&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(2001)%20Reading%20Winnicott.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Winnicott, D. W. (1960). The theory of the parent-infant relationship. <em>Int. J. Psychoanal., 41,</em> 585&ndash;595. <span class="pages">(10 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Winnicott%201960&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Winnicott%20(1960)%20The%20Parent-Infant%20Relationship.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Winnicott, D. W. (1958). The capacity to be alone. <em>Int. J. Psycho-Anal., 39,</em> 416&ndash;420. <span class="pages">(5 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Winnicott%201958&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Winnicott%20(1958)%20The%20Capacity%20to%20Be%20Alone.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Kanter, J. (2000). Beyond psychotherapy: Therapeutic relationships in community care. <em>Smith College Studies in Social Work, 70</em>(3), 397&ndash;426. <span class="pages">(31 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Kanter%202000&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Kanter%20(2000)%20Beyond%20Psychotherapy.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Three Approaches to Psychotherapy &mdash; Male Client</em> (McWilliams section). APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Three%20Approaches%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Three%20Approaches%20to%20Psychotherapy%22%20(McWilliams%20section).%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Attachment Theory in Action Podcast: <em>Object Relations &amp; Attachment Theory &mdash; Part 2.</em> <span class="pages">(31 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Attachment%20Theory%20Podcast%20Part%202&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Attachment%20Theory%20in%20Action%20podcast%2C%20Part%202.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>The Object Relations View Podcast: <em>Winnicott's Understanding of Envy.</em> <span class="pages">(12 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Object%20Relations%20View%20Winnicott&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Object%20Relations%20View%20podcast%20on%20Winnicott%20and%20Envy.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Couched Podcast: <em>Remembering Winnicott.</em> <span class="pages">(37 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Couched%20Podcast%20Winnicott&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20Couched%20podcast%20episode%20on%20Winnicott.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p><strong>Each week includes:</strong> a curator framing paragraph that tells you why this material matters clinically, full reading citations with links to request copies, media recommendations, and two to three reflection prompts designed for solo journaling or group discussion.</p>
 
-      <!-- Week 9 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 9</span>
-          <span class="week-title">Clinical Application &mdash; The Frame</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">The frame is what makes therapy therapy. This week examines what the frame is, why it matters, and what happens when it bends or breaks&mdash;which, in social work settings, it does constantly. McWilliams and Busch provide the practical grounding, while Bleger and Bass push into the deeper meaning of the frame itself.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>McWilliams, N. &mdash; Ch. 5: Boundaries I: The Frame. <em>Psychoanalytic Psychotherapy.</em> <span class="pages">(21 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20McWilliams%20Ch.%205%20Frame&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20McWilliams%20Ch.%205%20on%20The%20Frame.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Busch, F. (1995). Beginning a psychoanalytic treatment: Establishing an analytic frame. <em>J. Amer. Psychoanal. Assn., 43,</em> 449&ndash;468. <span class="pages">(20 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Busch%201995&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Busch%20(1995)%20on%20the%20analytic%20frame.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Bleger, J. (1967). Psycho-analysis of the psycho-analytic frame. <em>Int. J. Psychoanal., 48,</em> 511&ndash;519. <span class="pages">(8 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Bleger%201967&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Bleger%20(1967)%20Psycho-Analysis%20of%20the%20Frame.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Freud, S. (1913). On beginning the treatment. <em>Standard Edition,</em> Vol. XII. Hogarth Press. <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Freud%201913&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Freud%20(1913)%20On%20Beginning%20the%20Treatment.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Bass, A. (2007). When the frame doesn't fit the picture. <em>Psychoanal. Dialogues, 17</em>(1), 1&ndash;27. <span class="pages">(27 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Bass%202007&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Bass%20(2007)%20When%20the%20Frame%20Doesn't%20Fit%20the%20Picture.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li><em>Psychoanalysts Explain: What is the Frame?</em> Wright Institute Los Angeles. <span class="pages">(7 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Wright%20Institute%20Frame%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20%22Psychoanalysts%20Explain%3A%20What%20is%20the%20Frame%3F%22%20from%20Wright%20Institute.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Psychoanalysis On and Off the Couch, Ep. 24: <em>The Psychoanalytic Home Visit.</em> <span class="pages">(40 min)</span> <a href="https://psychoanalysisonandoffthecouch.libsyn.com/episode-024-the-psychoanalytic-home-visit-we-take-the-frame-with-us" target="_blank" class="media-link">listen</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+        <p><strong>Open source.</strong> Everything here is visible and free. The readings are cited but not hosted &mdash; most are behind journal paywalls or in books still in print. If you want a specific reading, click &ldquo;request&rdquo; and I&rsquo;ll help you find it. That&rsquo;s also how you&rsquo;ll hear about the live consultation groups I&rsquo;m putting together.</p>
+      </section>
 
-      <!-- Week 10 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 10</span>
-          <span class="week-title">Self Psychology</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Kohut's self psychology recenters the therapeutic relationship around empathy, attunement, and the selfobject experience. For social workers, this is often the most intuitive theoretical home&mdash;it takes seriously the idea that people need to feel understood before they can change. Geist's paper on the forward edge is a beautiful articulation of self psychology's clinical optimism.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 6: The Theory of Self Psychology. <em>Inside Out and Outside In.</em> <span class="pages">(26 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%206&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%206%20Self%20Psychology.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Geist, R. A. (2011). The forward edge, connectedness, and the therapeutic process. <em>Int. J. Psychoanal. Self Psychol., 6,</em> 235&ndash;251. <span class="pages">(17 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Geist%202011&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Geist%20(2011)%20The%20Forward%20Edge.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Newman, K. (2007). Therapeutic action in self psychology. <em>Psychoanal. Quarterly, 76,</em> 1513&ndash;1553. <span class="pages">(41 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Newman%202007&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Newman%20(2007)%20Therapeutic%20Action%20in%20Self%20Psychology.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Magid, B., Fosshage, J., &amp; Shane, E. (2021). The emerging paradigm of relational self psychology. <em>Psychoanalysis, Self and Context, 16</em>(1), 1&ndash;23. <span class="pages">(23 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Magid%202021&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Magid%20et%20al.%20(2021)%20on%20Relational%20Self%20Psychology.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Working With Emotion in Psychodynamic Therapy</em> with Norka T. Malberg. APA. <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Malberg%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Working%20With%20Emotion%22%20with%20Norka%20T.%20Malberg.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>The Social Work Podcast: <em>Self Psychology for Social Workers</em> with Tom Young, Ph.D. <span class="pages">(52 min)</span> <a href="https://socialworkpodcast.blogspot.com/2016/11/self-psychology.html" target="_blank" class="media-link">listen</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+      <!-- Table of Contents -->
+      <section>
+        <h2>Course Overview</h2>
+        <nav aria-label="Course contents">
+          <ol class="toc">
+            <li>
+              <a href="week-1">
+                <span class="toc-number">Week 01</span>
+                <span class="toc-title">What Is Psychodynamic Psychotherapy, and Is It Evidence-Based?</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-2">
+                <span class="toc-number">Week 02</span>
+                <span class="toc-title">Origins of Psychotherapy &mdash; Freud</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-3">
+                <span class="toc-number">Week 03</span>
+                <span class="toc-title">Clinical Application &mdash; Transference and Countertransference</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-4">
+                <span class="toc-number">Week 04</span>
+                <span class="toc-title">Ego Psychology</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-5">
+                <span class="toc-number">Week 05</span>
+                <span class="toc-title">Race and Racism in Psychodynamic Theory</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-6">
+                <span class="toc-number">Week 06</span>
+                <span class="toc-title">Object Relations &mdash; Melanie Klein</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-7">
+                <span class="toc-number">Week 07</span>
+                <span class="toc-title">Clinical Application &mdash; Projection, Splitting, and Projective Identification</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-8">
+                <span class="toc-number">Week 08</span>
+                <span class="toc-title">Object Relations &mdash; Donald Woods Winnicott</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-9">
+                <span class="toc-number">Week 09</span>
+                <span class="toc-title">Clinical Application &mdash; The Frame</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-10">
+                <span class="toc-number">Week 10</span>
+                <span class="toc-title">Self Psychology</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-11">
+                <span class="toc-number">Week 11</span>
+                <span class="toc-title">Clinical Application &mdash; Rupture and Repair</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-12">
+                <span class="toc-number">Week 12</span>
+                <span class="toc-title">The Relational Turn</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-13">
+                <span class="toc-number">Week 13</span>
+                <span class="toc-title">Intersubjectivity</span>
+              </a>
+            </li>
+            <li>
+              <a href="week-14">
+                <span class="toc-number">Week 14</span>
+                <span class="toc-title">From Theory to Practice</span>
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </section>
 
-      <!-- Week 11 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 11</span>
-          <span class="week-title">Clinical Application &mdash; Rupture and Repair</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Every therapeutic relationship breaks. The question is whether you can repair it&mdash;and whether the repair itself becomes the treatment. Muran and Eubanks have done the most rigorous empirical work on alliance ruptures, and their writing is refreshingly jargon-free.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Muran, J. C., Eubanks, C. F., &amp; Samstag, L. W. (2021). One more time with less jargon. <em>J. Clinical Psychology, 77,</em> 361&ndash;368. <span class="pages">(7 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Muran%202021&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Muran%20et%20al.%20(2021)%20on%20rupture%20repair.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Eubanks, C. F., Muran, J. C., &amp; Safran, J. D. (2018). Alliance rupture repair: A meta-analysis. <em>Psychotherapy, 55</em>(4), 508&ndash;519. <span class="pages">(11 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Eubanks%202018&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Eubanks%20et%20al.%20(2018)%20Alliance%20Rupture%20Repair.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Friedlander, M. L. (2015). Use of relational strategies to repair alliance ruptures. <em>Psychotherapy, 52</em>(2), 174&ndash;179. <span class="pages">(6 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Friedlander%202015&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Friedlander%20(2015)%20on%20relational%20strategies%20for%20alliance%20ruptures.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Rupture and Repair in Psychotherapy</em> with Muran &amp; Eubanks. APA. <span class="pages">(1 hr 42 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Muran%20Eubanks%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Rupture%20and%20Repair%22%20with%20Muran%20%26%20Eubanks.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+      <!-- Texts -->
+      <section>
+        <h2>Texts</h2>
+        <ul class="book-list">
+          <li>
+            <span class="label label-required">Required</span>
+            Berzoff, J., Flanagan, L. M. &amp; Hertz, P. (Eds.). (2021). <em>Inside Out and Outside In: Psychodynamic Clinical Theory and Psychopathology in Contemporary Multicultural Contexts</em> (5th ed.). Rowman &amp; Littlefield.
+          </li>
+          <li>
+            <span class="label label-recommended">Recommended</span>
+            McWilliams, N. (2004). <em>Psychoanalytic Psychotherapy: A Practitioner&rsquo;s Guide.</em> Guilford Press.
+          </li>
+          <li>
+            <span class="label label-recommended">Recommended</span>
+            Quatman, T. (2015). <em>Essential Psychodynamic Psychotherapy: An Acquired Art.</em> Routledge.
+          </li>
+        </ul>
+      </section>
 
-      <!-- Week 12 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 12</span>
-          <span class="week-title">The Relational Turn</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">The relational turn changed everything. It moved psychodynamic therapy away from the analyst-as-blank-screen toward the idea that the therapeutic relationship is a mutual, co-constructed process. Ornstein and Ganzer's paper makes the case for why this matters specifically for social work.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Ornstein, E. D. &amp; Ganzer, C. (2005). Relational social work: A model for the future. <em>Families in Society, 86,</em> 565&ndash;572. <span class="pages">(7 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ornstein%202005&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ornstein%20%26%20Ganzer%20(2005)%20Relational%20Social%20Work.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 8: Relational and Intersubjective Theories. <em>Inside Out and Outside In.</em> <span class="pages">(16 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%208&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%208%20Relational%20and%20Intersubjective%20Theories.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Aron, L. (1991). The patient's experience of the analyst's subjectivity. <em>Psychoanal. Dialogues, 1</em>(1), 29&ndash;51. <span class="pages">(23 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Aron%201991&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Aron%20(1991)%20The%20Patient's%20Experience%20of%20the%20Analyst's%20Subjectivity.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Bromberg, P. M. (1993). Shadow and substance: A relational perspective on clinical process. <em>Psychoanal. Psychology, 10</em>(2), 147&ndash;168. <span class="pages">(22 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Bromberg%201993&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Bromberg%20(1993)%20Shadow%20and%20Substance.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Video: <em>Relational Psychotherapy</em> with Jeremy D. Safran. APA. <span class="pages">(100 min)</span> <a href="mailto:topher416@gmail.com?subject=Media%20Request%3A%20Safran%20APA%20Video&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20accessing%20the%20APA%20video%20%22Relational%20Psychotherapy%22%20with%20Jeremy%20D.%20Safran.%0A%0AThanks!" class="request-link">request</a></li>
-              <li><em>Relational Psychoanalysis &mdash; How We Got Here.</em> Spyros D. Orfanos. <span class="pages">(11 min)</span> <a href="https://www.youtube.com/watch?v=dK13MHsImME" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
+      <!-- CTA -->
+      <div class="cta">
+        <h2>Join a Consultation Group</h2>
+        <p>I&rsquo;m putting together virtual consultation groups to work through this material with other pre-licensed social workers. Weekday evenings, 14 weeks, small cohort. Interested?</p>
+        <a href="mailto:topher416@gmail.com?subject=Consultation%20Group%20Interest&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20joining%20a%20consultation%20group%20for%20Psychodynamic%20Social%20Work%20Practice.%0A%0AA%20bit%20about%20me%3A%0A%0A" class="button">Get in Touch</a>
+      </div>
 
-      <!-- Week 13 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 13</span>
-          <span class="week-title">Intersubjectivity</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">Intersubjectivity asks the deepest question in psychodynamic theory: what happens between two minds? Ogden's concept of the "analytic third"&mdash;the experience that belongs to neither patient nor therapist but is co-created between them&mdash;is one of the most profound ideas in clinical work.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Quatman, T. &mdash; Ch. 7: Understanding, the Bass Clef, and Intersubjectivity. <em>Essential Psychodynamic Psychotherapy.</em> Routledge. <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Quatman%20Ch.%207&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Quatman%20Ch.%207%20on%20Intersubjectivity.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. H. (1994). The analytic third: Working with intersubjective clinical facts. <em>Int. J. Psychoanal., 75,</em> 3&ndash;19. <span class="pages">(16 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%201994&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(1994)%20The%20Analytic%20Third.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Bromberg, P. M. (1996). Standing in the spaces: The multiplicity of self and the psychoanalytic relationship. <em>Contemp. Psychoanal., 32,</em> 509&ndash;535. <span class="pages">(30 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Bromberg%201996&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Bromberg%20(1996)%20Standing%20in%20the%20Spaces.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Arnd-Caddigan, M. (2011). Toward a broader definition of evidence-informed practice: Intersubjective evidence. <em>Families in Society, 92</em>(4), 372&ndash;378. <span class="pages">(7 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Arnd-Caddigan%202011&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Arnd-Caddigan%20(2011)%20on%20intersubjective%20evidence.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li><em>Intersubjectivity.</em> Berlin Psychoanalytic. YouTube. <span class="pages">(15 min)</span> <a href="https://www.youtube.com/watch?v=8PKUD6XVHz4" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
-      <!-- Week 14 -->
-      <details class="week">
-        <summary>
-          <span class="week-number">Week 14</span>
-          <span class="week-title">From Theory to Practice</span>
-        </summary>
-        <div class="week-body">
-          <p class="week-description">We end where the work begins&mdash;in the room, with real people, in messy contexts. Ngo-Smith's paper on psychoanalysis and homelessness is a necessary corrective to the fantasy of the idealized consulting room. Ogden's "Ontological Psychoanalysis" asks what kind of clinician you want to become.</p>
-          <div class="reading-section">
-            <h4><span class="dot dot-required"></span> Required Readings</h4>
-            <ul>
-              <li>Ngo-Smith, B. R. (2018). This couch has bed bugs. <em>Clinical Social Work Journal, 46,</em> 26&ndash;33. <span class="pages">(7 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ngo-Smith%202018&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ngo-Smith%20(2018)%20This%20Couch%20Has%20Bed%20Bugs.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Ogden, T. (2019). Ontological psychoanalysis or "What do you want to be when you grow up?" <em>Psychoanal. Quarterly, 88,</em> 661&ndash;684. <span class="pages">(23 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Ogden%202019&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ogden%20(2019)%20Ontological%20Psychoanalysis.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-supplemental"></span> Supplemental Readings</h4>
-            <ul>
-              <li>Berzoff, J., Flanagan, L. M. &amp; Hertz, P. &mdash; Ch. 12: The Bridge: From Theory to Practice. <em>Inside Out and Outside In.</em> <span class="pages">(13 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Berzoff%20Ch.%2012&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Ch.%2012%20The%20Bridge%20from%20Inside%20Out%20and%20Outside%20In.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>McWilliams, N. &mdash; Ch. 12: Self-Care. <em>Psychoanalytic Psychotherapy.</em> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20McWilliams%20Ch.%2012&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20McWilliams%20Ch.%2012%20Self-Care.%0A%0AThanks!" class="request-link">request</a></li>
-              <li>Gabbard, G. O. (2000). On gratitude and gratification. <em>J. Amer. Psychoanal. Assn., 48</em>(3), 697&ndash;716. <span class="pages">(20 pgs)</span> <a href="mailto:topher416@gmail.com?subject=Reading%20Request%3A%20Gabbard%202000&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20Gabbard%20(2000)%20On%20Gratitude%20and%20Gratification.%0A%0AThanks!" class="request-link">request</a></li>
-            </ul>
-          </div>
-          <div class="reading-section">
-            <h4><span class="dot dot-media"></span> Media</h4>
-            <ul>
-              <li>Nancy McWilliams lecture: <em>Psychological Wellness: What Has Happened to Our Understanding of Mental Health?</em> <span class="pages">(1 hr 25 min)</span> <a href="https://www.youtube.com/watch?v=Tv6yNJcZhl0" target="_blank" class="media-link">watch</a></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
-    </section>
-
-    <div class="note">
-      <h3>A Note on Readings and Media</h3>
-      <p>The readings and some media listed here are cited but not hosted. Many are behind journal paywalls or published in books still in print. I'm not in a position to distribute them publicly, but I'm happy to help you find them. Click "request" next to any reading or media item to send me a pre-filled email, and I'll do what I can.</p>
-    </div>
-
-    <div class="cta">
-      <h2>Join a Consultation Group</h2>
-      <p>I'm putting together virtual consultation groups to work through this material with other pre-licensed social workers. Weekday evenings, 14 weeks, small cohort. Interested?</p>
-      <a href="mailto:topher416@gmail.com?subject=Consultation%20Group%20Interest&body=Hi%20Topher%2C%0A%0AI'm%20interested%20in%20joining%20a%20consultation%20group%20for%20Psychodynamic%20Social%20Work%20Practice.%0A%0AA%20bit%20about%20me%3A%0A%0A" class="button">Get in Touch</a>
-    </div>
+    </main>
 
     <footer>
-      <p>Originally developed as an independent study (SW 6900) at the University of Utah College of Social Work, Spring 2024, under the supervision of Dr. Joanna Bettmann Schaefer.</p>
+      <p>Originally developed as an independent study at the University of Utah College of Social Work, Spring 2024.</p>
+      <p>Under the supervision of Dr. Joanna Bettmann Schaefer.</p>
     </footer>
 
   </div>

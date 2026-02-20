@@ -1,0 +1,723 @@
+/* ==========================================================================
+   Psychodynamic Social Work Practice — Design System
+   ========================================================================== */
+
+/* ---------- Self-Hosted Fonts ---------- */
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/InstrumentSerif-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/InstrumentSerif-Italic.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url(fonts/Newsreader-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Newsreader-Italic.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(fonts/JetBrainsMono-Light.woff2) format('woff2');
+}
+
+/* ---------- Design Tokens ---------- */
+
+:root {
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-text: #2c2420;
+  --color-text-secondary: #5a4d44;       /* darkened from #6b5e56 for WCAG AA */
+  --color-accent: #8b4513;
+  --color-accent-light: #a0622d;
+  --color-border: #e8e0d8;
+  --color-tag-required: #5c3d2e;
+  --color-tag-supplemental: #7a6a5e;
+  --color-tag-media: #4a6741;
+  --color-discussion: #2d4a3e;           /* deep green for discussion prompts */
+  --color-embed-bg: #f2efe9;             /* warm neutral for audio embed areas */
+
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Newsreader', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Legacy aliases (used in existing markup) */
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
+}
+
+/* ---------- Reset ---------- */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ---------- Skip Link (Accessibility) ---------- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ---------- Base ---------- */
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Paper texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.018;
+  z-index: 99;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Focus Styles (Accessibility) ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+
+header {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+header .subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+header .byline {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+header .byline a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+header .byline a:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+/* ---------- Divider ---------- */
+
+.divider {
+  width: 48px;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 auto 48px;
+}
+
+/* ---------- Sections ---------- */
+
+section {
+  margin-bottom: 56px;
+}
+
+section > h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+section p {
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+/* ---------- Book List ---------- */
+
+.book-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.book-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.book-list li:last-child {
+  border-bottom: none;
+}
+
+.book-list .label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+.label-required {
+  background: var(--color-tag-required);
+  color: #fff;
+}
+
+.label-recommended {
+  background: var(--color-tag-supplemental);
+  color: #fff;
+}
+
+/* ---------- Week Cards (Homepage TOC in collapsible mode — legacy) ---------- */
+
+.week {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: var(--color-surface);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.week:hover {
+  box-shadow: 0 2px 12px rgba(44, 36, 32, 0.06);
+}
+
+.week summary {
+  padding: 20px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.week summary::-webkit-details-marker { display: none; }
+
+.week summary::before {
+  content: '+';
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.week[open] summary::before {
+  content: '\2212';
+}
+
+.week-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+.week-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.week-body {
+  padding: 0 24px 24px 60px;
+}
+
+.week-description {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: 24px;
+  line-height: 1.65;
+}
+
+/* ---------- Reading Sections ---------- */
+
+.reading-section {
+  margin-bottom: 20px;
+}
+
+.reading-section h4 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reading-section h4 .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-required { background: var(--color-tag-required); }
+.dot-supplemental { background: var(--color-tag-supplemental); }
+.dot-media { background: var(--color-tag-media); }
+
+.reading-section ul {
+  list-style: none;
+}
+
+.reading-section li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding: 6px 0;
+  color: var(--color-text);
+  overflow-wrap: break-word;
+}
+
+.reading-section li .pages {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+}
+
+.reading-section li .request-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-accent);
+  margin-left: 4px;
+  transition: border-color 0.2s;
+}
+
+.reading-section li .request-link:hover {
+  border-bottom-style: solid;
+}
+
+.reading-section li .media-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-tag-media);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-tag-media);
+  margin-left: 4px;
+  transition: border-color 0.2s;
+}
+
+.reading-section li .media-link:hover {
+  border-bottom-style: solid;
+}
+
+/* ---------- Reading Cards (Week Pages) ---------- */
+
+.reading-card {
+  border-left: 3px solid var(--color-tag-required);
+  padding: 8px 0 8px 16px;
+  margin-bottom: 8px;
+}
+
+.reading-card.supplemental {
+  border-left-color: var(--color-border);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.reading-card.supplemental:hover {
+  opacity: 1;
+}
+
+.reading-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ---------- Section Labels (Week Pages) ---------- */
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+/* ---------- Audio Embed Area ---------- */
+
+.audio-embed {
+  background: var(--color-embed-bg);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.audio-embed audio {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.audio-embed p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* ---------- Discussion / Reflection Prompts ---------- */
+
+.reflection-prompts {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.reflection-prompts ol {
+  list-style: none;
+  counter-reset: prompt;
+}
+
+.reflection-prompts li {
+  counter-increment: prompt;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  margin-bottom: 20px;
+  padding-left: 36px;
+  position: relative;
+  color: var(--color-discussion);
+}
+
+.reflection-prompts li::before {
+  content: counter(prompt);
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+
+/* ---------- Prev/Next Navigation (Week Pages) ---------- */
+
+.week-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 2px solid var(--color-text);
+}
+
+.week-nav a {
+  text-decoration: none;
+  color: var(--color-text);
+  padding: 12px 0;
+  transition: color 0.2s;
+}
+
+.week-nav a:hover {
+  color: var(--color-accent);
+}
+
+.week-nav .nav-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.week-nav .nav-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.week-nav .next {
+  text-align: right;
+}
+
+.week-nav .overview-link {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.week-nav .overview-link:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- Homepage TOC (Ruled List) ---------- */
+
+.toc {
+  list-style: none;
+}
+
+.toc li {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.toc li:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0 16px 0;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: padding-left 0.2s;
+}
+
+.toc a:hover {
+  padding-left: 8px;
+}
+
+.toc .toc-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+.toc .toc-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+/* ---------- CTA Section ---------- */
+
+.cta {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  margin: 56px 0;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.cta p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta a.button {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cta a.button:hover {
+  background: var(--color-accent-light);
+}
+
+/* ---------- Note Section ---------- */
+
+.note {
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-border);
+  padding: 20px 24px;
+  border-radius: 0 6px 6px 0;
+  margin: 40px 0;
+}
+
+.note h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.note p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  text-align: center;
+  padding: 40px 0 60px;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border);
+}
+
+footer p {
+  margin-bottom: 4px;
+}
+
+/* ---------- Stagger-In Animation ---------- */
+
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.4s ease forwards;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-in > *:nth-child(2) { animation-delay: 70ms; }
+.stagger-in > *:nth-child(3) { animation-delay: 140ms; }
+.stagger-in > *:nth-child(4) { animation-delay: 210ms; }
+.stagger-in > *:nth-child(5) { animation-delay: 280ms; }
+.stagger-in > *:nth-child(6) { animation-delay: 350ms; }
+.stagger-in > *:nth-child(7) { animation-delay: 420ms; }
+.stagger-in > *:nth-child(8) { animation-delay: 490ms; }
+.stagger-in > *:nth-child(9) { animation-delay: 560ms; }
+.stagger-in > *:nth-child(10) { animation-delay: 630ms; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+  header { padding: 48px 0 40px; }
+  header h1 { font-size: 2.2rem; }
+  .week summary { padding: 16px 18px; }
+  .week-body { padding: 0 18px 18px 42px; }
+  .cta { padding: 28px 20px; }
+
+  .week-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .week-nav .next {
+    text-align: left;
+  }
+
+  .toc a {
+    gap: 12px;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
